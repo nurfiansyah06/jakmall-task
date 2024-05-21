@@ -12,27 +12,13 @@ class ReviewProductCommand extends Command
 
     public function handle()
     {
-        // Load product and review data from JSON files
-        $dataProduct = __DIR__.'/../../database/products.json';
-        $dataProductJson = file_get_contents($dataProduct);
-
+        // Load review data from JSON files
         $dataReview = __DIR__.'/../../database/reviews.json';
         $dataReviewJson = file_get_contents($dataReview);
 
         $productId = $this->argument('productId');
-
-        // Decode JSON data
-        $products = json_decode($dataProductJson, true);
+        
         $reviews = json_decode($dataReviewJson, true);
-
-        // Check if the product exists
-        $productExists = false;
-        foreach ($products as $product) {
-            if ($product['id'] == $productId) {
-                $productExists = true;
-                break;
-            }
-        }
 
         // Initialize the result array
         $result = [
