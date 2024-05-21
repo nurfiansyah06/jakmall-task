@@ -22,7 +22,9 @@ class ReviewSummaryCommandTest extends TestCase
             '2_star'          => 123,
             '1_star'          => 72,
         ];
-        $result = $this->artisan('review:summary');
-        $result->expectsOutput(collect($output)->toJson());
+
+        $this->artisan('review:summary')
+             ->expectsOutput(json_encode($output))
+             ->assertExitCode(0);
     }
 }
